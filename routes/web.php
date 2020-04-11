@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['Prefix' => 'admin'],function(){
+    Route::get('news/create','Admin\NewsController@add');
+});
+
+
+//4【応用】 前章でAdmin/ProfileControllerを作成し、
+//add Action, edit Actionを追加しました。web.phpを編集して、
+//admin/profile/create にアクセスしたら ProfileController の
+//add Action に、admin/profile/edit にアクセスしたら ProfileController 
+//の edit Action に割り当てるように設定してください。
+
+Route::group(['Prefix' => 'admin'],function(){
+    Route::get('profile/create','Admin\ProfileController@add');
+    Route::get('profile/create/edit','Admin\ProfileController@edit');
+});
