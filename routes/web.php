@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['Prefix' => 'admin'],function(){
+Route::group(['prefix' => 'admin'],function(){
     Route::get('news/create','Admin\NewsController@add');
 });
 
@@ -26,7 +26,7 @@ Route::group(['Prefix' => 'admin'],function(){
 //add Action に、admin/profile/edit にアクセスしたら ProfileController 
 //の edit Action に割り当てるように設定してください。
 
-Route::group(['Prefix' => 'admin'],function(){
+Route::group(['prefix' => 'admin'],function(){
     Route::get('profile/create','Admin\ProfileController@add');
-    Route::get('profile/create/edit','Admin\ProfileController@edit');
+    Route::get('profile/edit','Admin\ProfileController@edit');
 });
