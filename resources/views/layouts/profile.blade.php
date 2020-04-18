@@ -55,7 +55,26 @@
                        
                        <!-- right side pf navbar -->
                        <ul class="navbar-nav ml-auto">
-                           
+                          <!--以下、12章課題、ログイン・ログアウトリンク表示-->
+                          @guest<!--ユーザー認証されていない場合 -->
+                          <li><a class="nav-link" href="{{route('login')}}">{{__('Login')}}</a></li>
+                          <!--↑loginリンク-->
+                          @else<!--ユーザー認証すみの場合 -->
+                          <li class="nav-item dropdown">
+                              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                  {{Auth::user()->name}}<span class="caret"></span>
+                              </a><!--認証済のユーザ名称を表示↑ -->
+                              
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                  {{__('Logout')}}
+                                  </a><!--logoutformへクリック時に送信↑ -->
+                                  <form id="logout-form" action="{{route('logout')}}" method="POST" style="display:none;">
+                                      @csrf
+                                  </form>
+                             </div>
+                          </li>
+                          @endguest
                        </ul>
                    </div>
             </nav>
