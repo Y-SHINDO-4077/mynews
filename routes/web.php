@@ -16,8 +16,14 @@ Route::get('/', function () {
 });
 
 //ログインしていない場合のリダイレクトの処理を追加　2020.04.16
-Route::group(['prefix' => 'admin'],function(){
-    Route::get('news/create','Admin\NewsController@add')->middleware('auth');
+//13章 ニュース投稿画面作成により追記
+// Route::group(['prefix' => 'admin'],function(){
+//     Route::get('news/create','Admin\NewsController@add')->middleware('auth');
+// });
+
+Route::group(['prefix' => 'admin','middleware' => 'auth'],function(){
+    Route::get('news/create','Admin\NewsController@add');
+    Route::post('news/create','Admin\NewsController@create');
 });
 
 
@@ -31,6 +37,10 @@ Route::group(['prefix' => 'admin'],function(){
 Route::group(['prefix' => 'admin'],function(){
     Route::get('profile/create','Admin\ProfileController@add')->middleware('auth');
     Route::get('profile/edit','Admin\ProfileController@edit')->middleware('auth');
+//13章 課題3 2020.04.19
+    Route::post('profile/create','Admin\ProfileController@create')->middleware('auth');
+//13章 課題6 2020.04.19
+    Route::post('profile/edit','Admin\ProfileController@update')->middleware('auth');
 });
 
 
