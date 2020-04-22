@@ -45,9 +45,10 @@
                      <label class="col-md-2">性別(gender)</label>
                      <div class="col-md-10">
                          <p>
-                         <input type="radio" class="form-control" name="gender" value="{{old('male')}}" id="male" checked="checked">
+                         <!--<input type="radio" class="form-control" name="gender" value="{{ old('gender') }}" id="male">-->
+                         <input type="radio" class="form-control" name="gender" value=0 "{{old('gender')!==0 ? 'checked': ''}}" id="male" checked="checked">
                          <label for="male">男(male)</label><!--文字をクリックすると、ラジオボタンが選択される -->
-                         <input type="radio" class="form-control" name="gender" value="{{old('female')}}" id="female">
+                         <input type="radio" class="form-control" name="gender" value=1 "{{old('gender')!==1 ? 'checked': ''}}" id="female">
                          <label for="female">女(female)</label><!--文字をクリックすると、ラジオボタンが選択される -->
                          </p>
                      </div>
