@@ -21,9 +21,15 @@ Route::get('/', function () {
 //     Route::get('news/create','Admin\NewsController@add')->middleware('auth');
 // });
 
-Route::group(['prefix' => 'admin','middleware' => 'auth'],function(){
-    Route::get('news/create','Admin\NewsController@add');
-    Route::post('news/create','Admin\NewsController@create');
+Route::group(['prefix' => 'admin'],function(){
+    Route::get('news/create','Admin\NewsController@add')->middleware('auth');
+    Route::post('news/create','Admin\NewsController@create')->middleware('auth');
+    //2020.04.23 15章教材追加 ニュース一覧画面
+    Route::get('news','Admin\NewsController@index')->middleware('auth');
+    //2020.04.24 16章教材追加　編集画面
+    Route::get('news/edit', 'Admin\NewsController@edit')->middleware('auth'); 
+    Route::post('news/edit', 'Admin\NewsController@update')->middleware('auth');
+    Route::get('news/delete', 'Admin\NewsController@delete')->middleware('auth');
 });
 
 
@@ -41,6 +47,9 @@ Route::group(['prefix' => 'admin'],function(){
     Route::post('profile/create','Admin\ProfileController@create')->middleware('auth');
 //13章 課題6 2020.04.19
     Route::post('profile/edit','Admin\ProfileController@update')->middleware('auth');
+// //15章 課題3
+//     Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth'); 
+//     Route::post('profile/edit', 'Admin\ProfileController@update')->middleware('auth');
 });
 
 

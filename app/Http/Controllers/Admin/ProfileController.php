@@ -16,7 +16,7 @@ class ProfileController extends Controller
     /*14章課題 admin/profile/create */
     public function create(Request $request)
     {   
-        
+    
         //validationを行う
         $this->validate($request,Profiles::$rules);
         
@@ -32,12 +32,29 @@ class ProfileController extends Controller
         
         return redirect('admin/profile/create');
     }
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('admin.profile.edit');
+        $profiles = Profiles::find($request->id);
+        
+        if(empty($profiles)){
+            abort(404);
+        }
+        return view('admin.profile.edit',["profile_form"=>$profiles]);
     }
-    public function update()
-    {
+    public function update(Request $request)
+    {   //validationを行う
+        $this->validate($request,Profiles::$rules);
+        
+        $profiles = new Profiles;
+        $profile_form = $request->all();
+        
+        //フォームから送信されてきた_tokenを削除
+        unset($profile_form['_token']);
+        
+        //DB保存
+        $profiles->fill($profile_form);
+        $profiles->save();
+        
         return redirect('admin/profile/edit');
     }
 }
