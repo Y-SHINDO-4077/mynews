@@ -24,6 +24,7 @@
                         <label class="col-md-2" for="body">本文</label>
                         <div class="col-md-10">
                             <textarea class="form-control" name="body" rows="20">{{ $news_form->body }}</textarea>
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2" for="image">画像</label>
@@ -47,6 +48,19 @@
                         </div>
                     </div>
                 </form>
+                <!-- 2020.04.27 17章教材により、編集履歴追加-->
+                <div class="row mt-5">
+                    <div class="col-md-4 mx-auto">
+                        <h2>編集履歴</h2>
+                        <ul class="list-group">
+                            @if($news_form->histories != NULL)
+                              @foreach ($news_form->histories as $history)
+                                <li class="list-group-item">{{$history->edited_at}}</li>
+                              @endforeach
+                            @endif
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

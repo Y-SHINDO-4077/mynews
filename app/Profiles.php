@@ -11,4 +11,9 @@ class Profiles extends Model
     public static $rules =array(
         'namae' => 'required'
         );
+    //17章課題 編集履歴を反映 2020.04.28
+    public function profile_histories(){
+        
+        return $this->hasMany('App\Profile_History');
+    }
 }

@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 
 use App\News; //News Modelを扱う 2020.04.20
 
+use App\History; //History Model を扱う 2020.04.27
+use Carbon\Carbon; //日付処理用にCarbon使用 2020.04.27
+
 class NewsController extends Controller
 {
     public function add(){
@@ -95,8 +98,17 @@ class NewsController extends Controller
       unset($news_form['_token']);
       // 該当するデータを上書きして保存する
       $news->fill($news_form)->save();
+      
+      //2020.04.27 17章教材追記
+      $history = new History;
+      $history->news_id = $news->id;
+      $history->edited_at = Carbon::now();//Carbon:: 日付時刻処理
+      $history->save();
+      //2020.04.27 17章教材追記
 
       return redirect('admin/news/');
+      
+      
   }
   
   public function delete(Request $request){

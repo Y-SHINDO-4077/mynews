@@ -50,6 +50,10 @@ Route::group(['prefix' => 'admin'],function(){
 // //15章 課題3
 //     Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth'); 
 //     Route::post('profile/edit', 'Admin\ProfileController@update')->middleware('auth');
+//17章 編集画面遷移前の一覧画面 2020.04.27
+    Route::get('profile','Admin\ProfileController@index')->middleware('auth');
+//17章　一覧画面の削除ボタンでデータ削除
+    Route::get('profile/delete', 'Admin\ProfileController@delete')->middleware('auth');
 });
 
 
