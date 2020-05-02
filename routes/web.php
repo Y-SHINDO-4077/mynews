@@ -65,3 +65,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//2020.05.01 18章教材
+Route::get('/','NewsController@index');
+//2020.05.02 18章課題
+Route::get('/profile','ProfileController@index');

@@ -10,6 +10,8 @@ use App\Profiles; //14章課題 2020.04.22
 use App\Profile_History; //17章課題 2020.04.28
 use Carbon\Carbon; //17章課題 日付のための利用 2020.04.28
 
+use App\Profile_History2; //17章課題 2020.04.30
+
 
 class ProfileController extends Controller
 {
@@ -41,8 +43,8 @@ class ProfileController extends Controller
         $profiles = Profiles::find($request->id);
         
         if(empty($profiles)){
-            abort(404);
-        }
+             abort(404);
+      }
         return view('admin.profile.edit',["profile_form"=>$profiles]);
     }
     public function update(Request $request)
@@ -60,14 +62,22 @@ class ProfileController extends Controller
         $profiles->save();
         
         
-        /*2020.04.28 17章課題　編集履歴をつける */
-        $profile_history = new Profile_History;
-        $profile_history->profiles_id = $profiles->id;
-        $profile_history->edit_at = Carbon::now();
-        $profile_history->save();
-        /*2020.04.28 17章課題　編集履歴をつける */
+        // /*2020.04.28 17章課題　編集履歴をつける */
+        // $profile_history = new Profile_History;
+        // $profile_history->profiles_id = $profiles->id;
+        // $profile_history->edit_at = Carbon::now();
+        // $profile_history->save();
+        // /*2020.04.28 17章課題　編集履歴をつける */
         
-        return redirect('admin/profile/');
+        //2020.04.30 17章課題　編集履歴　もう一度　Profile_hirtories2 Modelから
+        $profile_history2 = new Profile_History2;
+        $profile_history2->profiles_id = $profiles->id;
+        $profile_history2->edited_at = Carbon::now();
+        $profile_history2->save();
+        //2020.04.30ここまで
+        
+        
+        return redirect('admin/profile/edit');
     }
     
     //2020.04.27 編集画面への遷移元を作成する

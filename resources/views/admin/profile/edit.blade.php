@@ -69,12 +69,20 @@
                 <div class="row mt-5"><!--mt-5:margin top $spacer(16px)*3に設定-->
                   <div class="col-md-4 mx-auto">
                     <h2>編集履歴</h2>
+                    <!--<ul class="list-group">-->
+                    <!--  @if($profile_form->profile_histories != NULL)-->
+                    <!--     @foreach($profile_form->profile_histories as $profile_history)-->
+                    <!--     <li class="list-group-item">{{$profile_history->edit_at}}</li>-->
+                    <!--     @endforeach-->
+                    <!--  @endif-->
+                    <!--</ul>-->
+                    <!-- 2020.04.30 17章課題もう一度-->
                     <ul class="list-group">
-                      @if($profile_form->profile_histories != NULL)
-                         @foreach($profile_form->profile_histories as $profile_history)
-                         <li class="list-group-item">{{$profile_history->edit_at}}</li>
-                         @endforeach
-                      @endif
+                        @if($profile_form->profile_history2s != NULL)
+                          @foreach($profile_form->profile_history2s as $profile_history2)
+                           <li class="list-group-item">{{$profile_history2->edited_at}}</li>
+                          @endforeach
+                        @endif
                     </ul>
                   </div>
                 </div>

@@ -32,4 +32,6 @@ mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
    .sass('resources/sass/admin.scss', 'public/css')
    /* 11 課題５*/
-   .sass('resources/sass/profile.scss', 'public/css');
+   .sass('resources/sass/profile.scss', 'public/css')
+   /*18章教材 2020.05.01*/
+   .sass('resources/sass/front.scss','public/css');
