@@ -4,6 +4,9 @@
 
 @section('content')
    <div class="container">
+       <!--2020.05.10 heroku デプロイ課題 pタグ追加-->
+       <p>NEWS TOP PAGE</p>
+       <!--2020.05.10 heroku デプロイ課題 pタグ追加-->
        <hr color="#c0c0c0"><!-- hrタグ：テーマや話題の区切りを表す-->
          @if(!is_null($headline))
             <div class="headline col-md-10 mx-auto">
